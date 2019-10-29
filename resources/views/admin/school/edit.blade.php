@@ -5,26 +5,25 @@
             <div class="tile-title">
                 <div class="row">
                     <div class="col-md-12">
-                        <label><h3>Update Profile</h3></label>
-                        {{--                        <a href="" class="btn btn-info pull-right">View Info</a>--}}
+                        <label><h3 class="text-center"> Update School Information</h3></label>
+
                         <h2 class="text-center" style="color: green">{{ Session::get('message') }}</h2>
                     </div>
                 </div>
             </div>
             <div class="tile-body col-md-10 m-auto">
-                <form method="POST" action="{{ route('update-profile') }}" enctype="multipart/form-data"
-                      class="form-horizontal">
+                <form method="POST" action="{{ route('school-update', $user->id) }}" class="form-horizontal">
                     @csrf
                     @method('PUT')
-
+                    <input type="hidden" name="id" value="{{ $user->id }}">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="email_address_2">Name :</label>
+                            <label>User Name :</label>
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" id="name" name="name" class="form-control" value="{{ Auth::user()->name }}" placeholder="Enter your name">
+                                    <input type="text" name="name" value="{{ $user->name }}" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -32,12 +31,27 @@
 
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="email_address_2">Email Address :</label>
+                            <label>School Name :</label>
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" id="email_address_2" name="email" value="{{ Auth::user()->email }}" class="form-control" placeholder="Enter your email address">
+                                    <input type="text" name="school_name" value="{{ $user->school_name }}"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label>Email :</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" name="email" value="{{ $user->email }}" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -45,40 +59,29 @@
 
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="email_address_2">Profile Image : </label>
+                            <label>Address :</label>
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="file" name="image"><br><br>
-{{--                                    <img src="{{ url('storage/about_us',$about->image) }}" height="100" width="80">--}}
-                                    <img src="{{ url('storage/profile',Auth::user()->image) }}" height="120"
-                                         width="120">
+                                    <textarea type="text" name="address" rows="4" class="form-control">{{
+                                    $user->address
+                                    }}</textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="email_address_2">about :</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea name="about" rows="5" class="form-control">{{ Auth::user()->about }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row clearfix">
-                        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">Update</button>
+                    <div class="form-group row">
+                        <label class="control-label col-md-2"></label>
+                        <div class="col-md-10">
+                            <button class="btn btn-success" name="btn" type="submit">Update</button>
+                            <a href="{{ route('school.index') }}" class="btn btn-danger">back</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    @endsection
+@endsection

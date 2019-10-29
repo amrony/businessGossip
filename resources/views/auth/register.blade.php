@@ -5,14 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header text-center">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('User Name')
+                            }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -20,6 +21,25 @@
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('School Name')
+                            }}</label>
+
+                            <div class="col-md-6">
+                                <input id="school_name" type="text" class="form-control{{ $errors->has('school_name') ? '
+                                is-invalid' : '' }}" name="school_name" value="{{ old('school_name') }}" required autofocus>
+
+                                @if ($errors->has('school_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('school_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -34,6 +54,23 @@
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Address')
+                            }}</label>
+
+                            <div class="col-md-6">
+                                <textarea class="form-control{{ $errors->has('address') ? '
+                                is-invalid' : '' }}" name="address"></textarea>
+
+                                @if ($errors->has('address'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('address') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -63,7 +100,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     {{ __('Register') }}
                                 </button>
                             </div>

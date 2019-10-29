@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/account','SettingsController@index')->name('my-account');
 Route::post('/password/update','SettingsController@updatePassword')->name('password-update');
 Route::get('/view/profile','SettingsController@viewProfile')->name('profile-update');
@@ -22,7 +22,19 @@ Route::put('/update/profile','SettingsController@updateProfile')->name('update-p
 
 
 Auth::routes();
-Route::resource('recharge','MobileRechargeController');
-Route::resource('add-fund','AddFundController');
 
+
+Route::get('/', 'HomePageController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('company', 'CompanyController');
+Route::resource('school', 'SchoolController');
+Route::put('update/school', 'SchoolController@schoolUpdate')->name('school-update');
+Route::get('school/delete/{id}', 'SchoolController@destroy')->name('school_destroy');
+
+
+Route::post('student', 'StudentController@addStudent')->name('student-add');
+Route::get('student/index', 'StudentController@index')->name('student-index');
+Route::get('student/approve/{id}', 'StudentController@approveStudent')->name('student-approve');
+Route::get('student/edit/{id}', 'StudentController@edit')->name('student-edit');
+Route::put('student/update', 'StudentController@update')->name('student-update');
+Route::get('student/{id}/delete', 'StudentController@destroy')->name('student-delete');
